@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { MintNFTForm } from "./mint-nft-form";
 import { useState } from "react";
+import { X } from "lucide-react";
 
 export function Hero() {
   const [showMintForm, setShowMintForm] = useState(false);
@@ -27,11 +28,11 @@ export function Hero() {
               testnet. Simple, secure, and seamless.
             </p>
             <div className="mt-10 flex items-center gap-x-6">
-              <Button onClick={() => setShowMintForm(true)} size="lg">
+              <Button onClick={() => setShowMintForm(true)} size="lg" className="rounded-full">
                 Start Creating
               </Button>
               <Link href="/gallery">
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="lg" className="rounded-full">
                   View Gallery
                 </Button>
               </Link>
@@ -51,10 +52,10 @@ export function Hero() {
           <Button 
             size="lg" 
             variant="ghost"
-            className="absolute top-4 right-4"
+            className="absolute -top-8 right-6"
             onClick={() => setShowMintForm(false)}
           >
-            Close Form
+            <X />
           </Button>
         </div>
       </div>
