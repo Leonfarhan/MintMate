@@ -119,7 +119,7 @@ export function MintNFTForm() {
       </Button>
 
       {!address && (
-        <p className="text-sm text-muted-foreground text-center">
+        <p className="text-sm text-muted-foreground">
           Please connect your wallet to mint NFTs
         </p>
       )}
