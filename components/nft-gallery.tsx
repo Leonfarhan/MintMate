@@ -32,11 +32,11 @@ export function NFTGallery() {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <div className="h-full grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {nfts.map((nft) => (
         <NFTCard
           key={nft.metadata.id}
-          name={nft.metadata.name || "Untitled"}
+          name={String(nft.metadata.name) || "Untitled"}
           image={nft.metadata.image || ""}
           creator={nft.owner.slice(0, 6)}
           creatorAddress={nft.owner}
