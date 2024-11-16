@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { useContract, useContractWrite, useAddress } from "@thirdweb-dev/react";
+import { useContract, useContractWrite, useAddress, useStorageUpload } from "@thirdweb-dev/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -19,6 +19,7 @@ export function MintNFTForm() {
   
   const { contract } = useContract(CONTRACT_ADDRESS);
   const { mutateAsync: mintNFT, isLoading: isMinting } = useContractWrite(contract, "mintNFT");
+  const { mutateAsync: upload } = useStorageUpload();
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setFile(acceptedFiles[0]);
@@ -39,28 +40,27 @@ export function MintNFTForm() {
     try {
       setIsUploading(true);
       // Upload image to IPFS
-      const response = await fetch("/api/upload", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          image: file,
-        }),
-      });
+      const imageUri = await upload({ data: [file] });
       
-      const data = await response.json();
-      
+      // Create and upload metadata
+      const metadata = {
+        name: name,
+        description: `A unique NFT created on MintMate`,
+        image: imageUri[0],
+      };
+      const metadataUri = await upload({ data: [metadata] });
+
       // Mint NFT
-      await mintNFT({ args: [address, data.uri] });
+      const tx = await mintNFT({ args: [address, metadataUri[0]] });
+
+      toast(`NFT minted successfully!`);
       
-      toast.success("NFT minted successfully!");
-      setFile(null);
+      // Reset form
       setName("");
+      setFile(null);
     } catch (error) {
-      toast.error("Failed to mint NFT. Please try again.");
       console.error(error);
+      toast("Error minting NFT. Please try again.");
     } finally {
       setIsUploading(false);
     }

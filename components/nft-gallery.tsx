@@ -25,7 +25,7 @@ export function NFTGallery() {
 
   if (!nfts?.length) {
     return (
-      <div className="text-center">
+      <div className="flex items-center justify-center h-[calc(100vh-40rem)]">
         <p className="text-lg text-muted-foreground">No NFTs have been minted yet.</p>
       </div>
     );

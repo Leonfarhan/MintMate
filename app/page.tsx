@@ -7,8 +7,8 @@ export default function Home() {
       <div className="flex container mx-auto px-4 py-16">
         <Hero />
       </div>
-      <div className="border-t border-border bg-muted/30" id="gallery">
-        <div className="container mx-auto px-4 py-16">
+      <div className="border-t border-border bg-muted/30 min-h-[calc(100vh-32rem)]" id="gallery">
+        <div className="container h-full mx-auto px-4 py-16">
           <h2 className="text-2xl font-bold mb-8">Recently Minted</h2>
           <NFTGallery />
         </div>

@@ -19,7 +19,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThirdwebProvider 
           activeChain="sepolia"
-          clientId={process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID}
+          clientId={process.env.NEXT_PUBLIC_CLIENT_ID}
         >
           <ThemeProvider
             attribute="class"
