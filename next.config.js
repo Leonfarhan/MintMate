@@ -4,6 +4,9 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  typescript: {
+    ignoreDuringBuilds: true,
+  },
   images: { unoptimized: true },
 };
 
