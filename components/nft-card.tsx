@@ -4,7 +4,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Image from "next/image";
-import { Ethereum } from "lucide-react";
+import {BadgeCent} from "lucide-react";
 
 interface NFTCardProps {
   name: string;
@@ -36,7 +36,7 @@ export function NFTCard({ name, image, creator, creatorAddress }: NFTCardProps) 
           <Avatar className="h-8 w-8">
             <AvatarImage src={`https://avatar.vercel.sh/${creatorAddress}`} />
             <AvatarFallback>
-              <Ethereum className="h-4 w-4" />
+              <BadgeCent className="h-4 w-4" />
             </AvatarFallback>
           </Avatar>
           <div className="text-sm text-muted-foreground">
