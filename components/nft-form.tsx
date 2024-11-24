@@ -5,8 +5,8 @@ import { useContract, useContractWrite, useAddress, useStorageUpload } from "@th
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
-import { useToast } from "./ui/use-toast";
 import { Loader2 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const CONTRACT_ADDRESS = "0xA895a9b5882DBa287CF359b6a722C5be46aCb675";
 
