@@ -1,26 +1,22 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
 
-import "@thirdweb-dev/contracts/eip/ERC721A.sol";
-import "@thirdweb-dev/contracts/eip/interface/IERC721Supply.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
-contract MintMateNFT is ERC721A {
-    constructor(
-        string memory _name,
-        string memory _symbol
-    )
-        ERC721A(
-            _name,
-            _symbol
-        )
-    {}
+contract MintMate is ERC721URIStorage {
+    uint256 public _tokenIdCounter;
 
-    function totalSupply() public view virtual override returns (uint256) {
-        return _totalMinted() - _totalBurned();
-    }
+    constructor() ERC721("MintMate Test", "MINT Test") {}
 
-    // Function to mint NFTs (you can customize this according to your needs)
-    function mint(uint256 quantity) external {
-        _mint(msg.sender, quantity);
+    function mintNFT(address recipient, string memory tokenURI)
+        public
+        returns (uint256)
+    {
+        uint256 tokenId = _tokenIdCounter;
+        _mint(recipient, tokenId);
+        _setTokenURI(tokenId, tokenURI);
+        _tokenIdCounter += 1;
+
+        return tokenId;
     }
 }
